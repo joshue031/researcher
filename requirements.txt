@@ -1,0 +1,9 @@
+Flask
+Flask-SQLAlchemy
+Flask-Migrate
+ollama
+pypdf
+faiss-cpu
+numpy
+langchain_text_splitters
+PyMuPDF

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Assistant</title>
+
+    <!-- KaTeX CSS (still needed for styling) -->
+    <link rel="stylesheet" href="css/katex.min.css">
+
+    <!-- Code Syntax Highlighting -->
+    <link rel="stylesheet" href="css/atom-one-dark.css">
+
+    <!-- All-in-one Markdown-it bundle with plugins -->
+    <script src="lib/markdown-it.min.js"></script>
+    <script src="lib/markdown-it-katex.min.js"></script>
+
+    <!-- Highlight.js (still separate) -->
+    <script src="lib/highlight.min.js"></script>
+
+    <!-- HTML Sanitizer (Security) -->
+    <script src="lib/purify.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Main Application Wrapper -->
+    <div id="app-wrapper">
+
+        <!-- Retractable Left Sidebar -->
+        <aside id="sidebar">
+            <button id="sidebar-toggle-btn" class="icon-btn">&lt;</button>
+            <header class="sidebar-header">
+                <h1 class="logo-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Researcher</h1>
+            </header>
+            
+            <!-- Top section for project selection -->
+            <div class="sidebar-section project-selection-area">
+                <button id="new-project-btn" class="btn-primary">+ New Project</button>
+                <label for="project-selector">Project:</label>
+                <select id="project-selector">
+                    <option value="">Select a Project...</option>
+                </select>
+            </div>
+
+            <!-- Lower section for navigation (tabs and lists) -->
+            <div id="sidebar-nav-section" class="sidebar-section hidden">
+                <nav id="sidebar-tab-nav">
+                    <button class="sidebar-tab-link active" data-tab="conversations">Conversations</button>
+                    <button class="sidebar-tab-link" data-tab="tasks">Tasks</button>
+                    <button class="sidebar-tab-link" data-tab="references">References</button>
+                </nav>
+
+                <div id="sidebar-list-container" class="sidebar-list-container">
+                    <!-- The content of this div will be entirely managed by JavaScript -->
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Display Area -->
+        <main id="main-content">
+            <div id="content-display-area">
+                <!-- This area will be dynamically populated by JS -->
+                <!-- It can hold the welcome screen, a chat interface, or a reference view -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals (no changes needed) -->
+    <div id="new-project-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h3>Create New Project</h3>
+            <form id="new-project-form">
+                <input type="text" id="new-project-name" placeholder="Enter project name" required>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" data-close-modal>Cancel</button>
+                    <button type="submit" class="btn-primary">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="add-reference-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h3>Add New Reference</h3>
+            <form id="add-reference-form">
+                <label for="doc-type-selector">Document Type</label>
+                <select id="doc-type-selector" required>
+                    <option value="journal_article">Journal Article</option>
+                    <option value="book">Book / Report</option>
+                    <option value="misc">Miscellaneous</option>
+                </select>
+                <label for="file-upload">Select File</label>
+                <input type="file" id="file-upload" required>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" data-close-modal>Cancel</button>
+                    <button type="submit" class="btn-primary">Upload & Process</button>
+                </div>
+                 <p class="processing-text hidden">Processing document... this may take a moment.</p>
+            </form>
+        </div>
+    </div>
+
+    <div id="new-task-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h3>Create New Task</h3>
+            <form id="new-task-form">
+                <label for="task-type-selector">Task Type</label>
+                <select id="task-type-selector" required>
+                    <option value="report_writing">Write a Report</option>
+                </select>
+                <label for="task-prompt">Report Description</label>
+                <textarea id="task-prompt" rows="6" placeholder="e.g., Write a three-section summary of the Aehle paper, focusing on the CNN performance and the final results..."></textarea>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" data-close-modal>Cancel</button>
+                    <button type="submit" class="btn-primary">Create & Run Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
